@@ -9,9 +9,17 @@ function App() {
   const [awayScore, setAwayScore] = useState(32)
   const [time, setTime] = useState(10)
 
+  const [firstName, setFirstName] =useState('Elan')
+  const [lastName, setLastName] = useState('Riznis')
+  
+  
+  const combinedName = () => {
+    console.log('on')
+    return firstName.concat(lastName)
+    
+  }
 
-  
-  
+
   const timer = () => {
      time > 0 ? setTime(time - 1) : setTime(10)
   }
@@ -19,7 +27,7 @@ function App() {
   useEffect(() => {
     const interval = setInterval(timer, 1000)
     return () => clearInterval(interval)
-  })
+  }, [ time ])
 
   
   
@@ -45,8 +53,10 @@ function App() {
       <section className="scoreboard">
         <div className="topRow">
           <div className="home">
+            <h1>{firstName}</h1>
+            <h1>{lastName}</h1>
             <h2 className="home__name">Lions</h2>
-
+            <button onClick={combinedName}>See my full name</button>
             {/* TODO STEP 3 - We need to change the hardcoded values in these divs to accept dynamic values from our state. */}
 
             <div className="home__score">{homeScore}</div>
@@ -71,7 +81,15 @@ function App() {
         </div>
       </section>
     </div>
+    // <div>
+    //   <h1>{firstName}</h1>
+    //   <h1>{lastName}</h1>
+    //   <button onClick={combinedName}>Combine</button>
+    //   <h1>{combinedName}</h1>
+    // </div>
   );
 }
 
 export default App;
+
+
